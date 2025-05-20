@@ -1,4 +1,4 @@
-Set Up Minikube:
+##Set Up Minikube:
 
 ```bash
 # Install Docker
