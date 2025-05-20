@@ -39,24 +39,27 @@ cd ..
 - cd backend/
 ```bash
 docker build -t three-tier-frontend .
-```cd ..
+cd ..
+```
 
-// Run:
-mongo:
+### Run:
+- mongo:
+```bash
 docker run -d -p 27017:27017 --network todo-network --name mongo mongo:latest
-
-backend:
+```
+- backend:
+```bash
 docker run -d --network todo-network -p 8080:8080 \
   -e MONGO_CONN_STR=mongodb://mongo:27017/tododb \
   -e USE_DB_AUTH=false \
   --name backend backend:latest
+```
 
-
-frontend:
+- frontend:
+```bash
 docker run -d -p 3000:3000 \
   -e REACT_APP_BACKEND_URL=http://<public-ip>:8080/api/tasks \
   --name frontend frontend:latest
-
+```
 Replace <public-ip> with your EC2 public IP (e.g., http://54.123.45.67:8080/api/tasks).
 
-```
