@@ -1,6 +1,6 @@
 Set Up Minikube:
 
-bash ```
+```bash
 # Install Docker
 sudo su
 sudo apt update && sudo apt -y install docker.io
