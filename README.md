@@ -20,21 +20,26 @@ minikube start --vm-driver=none
 minikube status
 ```
 
-## Code
-## Build
+## 📜Code
+## 🐳Build
 ```bash
 git clone https://github.com/<your-username>/3-tier-todo-app.git
 cd 3-tier-todo-app
+```
 
-## Create Docker Netowork
+- Create Docker Netowork
+```bash
 docker network create todo-network
-cd frontend/
+```
+- cd frontend/
+```bash
 docker build -t three-tier-frontend .
 cd ..
-
-cd backend/
+```
+- cd backend/
+```bash
 docker build -t three-tier-frontend .
-cd ..
+```cd ..
 
 // Run:
 mongo:
