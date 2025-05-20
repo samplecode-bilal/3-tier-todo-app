@@ -38,7 +38,7 @@ cd ..
 ```
 - cd backend/
 ```bash
-docker build -t three-tier-frontend .
+docker build -t three-tier-backend .
 cd ..
 ```
 
@@ -52,14 +52,52 @@ docker run -d -p 27017:27017 --network todo-network --name mongo mongo:latest
 docker run -d --network todo-network -p 8080:8080 \
   -e MONGO_CONN_STR=mongodb://mongo:27017/tododb \
   -e USE_DB_AUTH=false \
-  --name backend backend:latest
+  --name backend three-tier-backend:latest
 ```
 
 - frontend:
 ```bash
 docker run -d -p 3000:3000 \
   -e REACT_APP_BACKEND_URL=http://<public-ip>:8080/api/tasks \
-  --name frontend frontend:latest
+  --name frontend three-tier-backend:latest
 ```
 Replace <public-ip> with your EC2 public IP (e.g., http://54.123.45.67:8080/api/tasks).
+Use the following command sequence to access the MySQL container’s shell interface:
+```bash
+docker exec -it mongo bash 
+show dbs
 
+use tododb 
+db.tasks.find()
+
+exit 
+exit 
+```
+
+### Push
+```bash
+docker login
+docker tag three-tier-frontend YOUR-DOCKERHUB-USERNAME/three-tier-frontend:latest
+docker push YOUR-DOCKERHUB-USERNAME/three-tier-frontend:latest
+
+
+docker tag three-tier-backend YOUR-DOCKERHUB-USERNAME/three-tier-backend:latest
+docker push YOUR-DOCKERHUB-USERNAME/three-tier-backend:latest
+
+```
+
+## ☸️ Deploy
+Note: please create namespace and change imagename in deployment.yaml file of frontend and backend.
+```bash
+kubectl create namespace workshop
+cd k8s
+kubectl apply -f secrets.yaml
+kubectl apply -f mongodb-deployment.yaml
+kubectl apply -f mongodb-service.yaml
+kubectl apply -f backend-deployment.yaml
+kubectl apply -f backend-service.yaml
+kubectl apply -f frontend-deployment.yaml
+kubectl apply -f frontend-service.yaml
+```
+
+After lab, please delete resources. 
