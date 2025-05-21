@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: YOUR-DOCKERHUB-USERNAME/3-tier-todo-app-frontend:latest     // Please paste here your dockerhub username
+        image: YOUR-DOCKERHUB-USERNAME/three-tier-frontend:latest     // Please paste here your dockerhub username
         imagePullPolicy: Always 
         ports:
         - containerPort: 3000
