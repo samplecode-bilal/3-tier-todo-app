@@ -1,4 +1,4 @@
-# 3-Tier To-Do App Deployment (ReactJS + NodeJS + MongoDB) with GitHub, Docker Hub, and Kubernetes
+## 3-Tier To-Do App Deployment (ReactJS + NodeJS + MongoDB) with GitHub, Docker Hub, and Kubernetes
 
 This is a 3-tier to-do list application built with a React frontend, Node.js/Express backend, and MongoDB database. Users can create, view, update, and delete tasks, which are stored in MongoDB and displayed dynamically on the frontend, deployed using Docker and Kubernetes.
 
