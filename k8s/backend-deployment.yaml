@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: YOUR-DOCKERHUB-USERNAME/3-tier-todo-app-backend:latest     // Please paste here your dockerhub username 
+        image: YOUR-DOCKERHUB-USERNAME/three-tier-backend:latest     // Please paste here your dockerhub username 
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
