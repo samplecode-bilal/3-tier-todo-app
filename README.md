@@ -66,7 +66,7 @@ docker run -d -p 3000:3000 \
   --name frontend three-tier-backend:latest
 ```
 Replace <public-ip> with your EC2 public IP (e.g., http://54.123.45.67:8080/api/tasks).
-Use the following command sequence to access the MySQL container’s shell interface:
+Use the following command sequence to access the MongoDB container’s shell interface:
 ```bash
 docker exec -it mongo bash 
 show dbs
