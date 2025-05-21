@@ -99,5 +99,20 @@ kubectl apply -f backend-service.yaml
 kubectl apply -f frontend-deployment.yaml
 kubectl apply -f frontend-service.yaml
 ```
+If you want to go to inside mongodb pod:
+```bash
+kubectl get pods -n workspace
+kubectl exec -it mongodb-c5b44f89c-gkccv -- bash
+mongosh
+admin
+# Enter password: password123
+
+show dbs
+use tododb 
+db.tasks.find()
+
+exit 
+exit 
+```
 
 After lab, please delete resources. 
