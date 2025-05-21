@@ -63,13 +63,13 @@ docker run -d --network todo-network -p 8080:8080 \
 ```bash
 docker run -d -p 3000:3000 \
   -e REACT_APP_BACKEND_URL=http://<public-ip>:8080/api/tasks \
-  --name frontend three-tier-backend:latest
+  --name frontend three-tier-frontend:latest
 ```
 Replace <public-ip> with your EC2 public IP (e.g., http://54.123.45.67:8080/api/tasks).
 Use the following command sequence to access the MongoDB container’s shell interface:
 ```bash
 docker exec -it mongo bash 
-show dbs
+show dbs;
 
 use tododb 
 db.tasks.find()
