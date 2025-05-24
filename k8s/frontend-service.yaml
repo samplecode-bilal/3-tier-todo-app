@@ -9,7 +9,7 @@ spec:
   - port: 3000
     protocol: TCP
     targetPort: 3000
-    nodePort: 30000  # Accessible via <EC2-public-IP>:30000
+    nodePort: 30000
   type: NodePort
   selector:
     role: frontend
