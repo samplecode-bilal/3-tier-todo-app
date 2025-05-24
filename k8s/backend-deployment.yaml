@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: yourusername/three-tier-backend:latest  # Replace 'yourusername' with your Docker Hub username
+        image: yourusername/three-tier-backend:latest  # Replace with your Docker Hub username
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
@@ -49,8 +49,8 @@ spec:
           periodSeconds: 5
         readinessProbe:
           httpGet:
-             path: /ok
-             port: 8080
+            path: /ok
+            port: 8080
           initialDelaySeconds: 5
           periodSeconds: 5
           successThreshold: 1
