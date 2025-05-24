@@ -95,13 +95,13 @@ Note: please create namespace and change imagename in deployment.yaml file of fr
 ```bash
 kubectl create namespace workshop
 cd k8s
-kubectl apply -f secrets.yaml
-kubectl apply -f mongodb-deployment.yaml
-kubectl apply -f mongodb-service.yaml
-kubectl apply -f backend-deployment.yaml
-kubectl apply -f backend-service.yaml
-kubectl apply -f frontend-deployment.yaml
-kubectl apply -f frontend-service.yaml
+kubectl apply -f secrets.yaml -n workshop
+kubectl apply -f mongodb-deployment.yaml -n workshop
+kubectl apply -f mongodb-service.yaml -n workshop
+kubectl apply -f backend-deployment.yaml -n workshop
+kubectl apply -f backend-service.yaml -n workshop
+kubectl apply -f frontend-deployment.yaml -n workshop
+kubectl apply -f frontend-service.yaml -n workshop
 ```
 If you want to go to inside mongodb pod:
 ```bash
