@@ -24,7 +24,10 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: yourusername/three-tier-frontend:latest  # Replace 'yourusername' with your Docker Hub username
+        image: yourusername/three-tier-frontend:latest  # Replace with your Docker Hub username
         imagePullPolicy: Always
+        env:
+          - name: REACT_APP_BACKEND_URL
+            value: "http://<ec2-public-ip>:30001/api/tasks"  # Replace with your EC2 public IP
         ports:
         - containerPort: 3000
