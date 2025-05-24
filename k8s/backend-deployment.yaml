@@ -8,11 +8,6 @@ metadata:
     env: demo
 spec:
   replicas: 1
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 25%
   selector:
     matchLabels:
       role: api
@@ -23,33 +18,39 @@ spec:
     spec:
       containers:
       - name: api
-        image: YOUR-DOCKERHUB-USERNAME/three-tier-backend:latest     // Please paste here your dockerhub username 
+        image: yourusername/three-tier-backend:latest  # Replace 'yourusername' with your Docker Hub username
         imagePullPolicy: Always
-        env:
-          - name: MONGO_CONN_STR
-            value: mongodb://mongodb-svc:27017/todo?directConnection=true
-          - name: MONGO_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: mongo-sec
-                key: username
-          - name: MONGO_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mongo-sec
-                key: password
         ports:
         - containerPort: 8080
+        env:
+        - name: MONGO_CONN_STR
+          value: mongodb://mongodb-svc:27017/todo?directConnection=true
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongo-sec
+              key: username
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-sec
+              key: password
         livenessProbe:
           httpGet:
             path: /ok
             port: 8080
-          initialDelaySeconds: 2
-          periodSeconds: 5
+          initialDelaySeconds: 5
+          periodSeconds: 10
         readinessProbe:
           httpGet:
-             path: /ok
-             port: 8080
+            path: /ok
+            port: 8080
           initialDelaySeconds: 5
-          periodSeconds: 5
-          successThreshold: 1
+          periodSeconds: 10
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "400m"
