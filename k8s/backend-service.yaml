@@ -9,7 +9,7 @@ spec:
   - port: 8080
     protocol: TCP
     targetPort: 8080
-    nodePort: 30001  # Accessible via <EC2-public-IP>:30001
+    nodePort: 30001
   type: NodePort
   selector:
     role: api
